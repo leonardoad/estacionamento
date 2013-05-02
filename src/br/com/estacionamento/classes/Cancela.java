@@ -1,4 +1,4 @@
-package classes;
+package br.com.estacionamento.classes;
 
 public class Cancela {
 	
