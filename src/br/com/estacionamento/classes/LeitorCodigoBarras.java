@@ -1,4 +1,4 @@
-package classes;
+package br.com.estacionamento.classes;
 
 /**
  * Classe para o leitor de código de barras

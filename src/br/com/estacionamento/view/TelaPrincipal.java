@@ -12,11 +12,14 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
-import javax.swing.JTextPane;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.SoftBevelBorder;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import javax.swing.JTextField;
 
 public class TelaPrincipal extends JFrame {
 
@@ -60,7 +63,7 @@ public class TelaPrincipal extends JFrame {
 		lblBeteerParking.setFont(new Font("Arial Black", Font.BOLD, 24));
 		PanelPrincipal.add(lblBeteerParking);
 
-		JTextPane usuario_text = new JTextPane();
+		JTextField usuario_text = new JTextField();
 		usuario_text.setBorder(new SoftBevelBorder(BevelBorder.LOWERED,
 				Color.GRAY, null, null, null));
 		usuario_text.setBounds(80, 118, 90, 20);
@@ -71,7 +74,7 @@ public class TelaPrincipal extends JFrame {
 		separator1.setBounds(190, 88, 36, 430);
 		PanelPrincipal.add(separator1);
 
-		JTextPane senha_text = new JTextPane();
+		JTextField senha_text = new JTextField();
 		senha_text.setBorder(new SoftBevelBorder(BevelBorder.LOWERED,
 				Color.GRAY, null, null, null));
 		senha_text.setBounds(80, 154, 90, 20);
@@ -133,11 +136,6 @@ public class TelaPrincipal extends JFrame {
 		lblTicket.setBounds(182, 112, 46, 14);
 		panel_pagamentos.add(lblTicket);
 
-		JLabel lblData = new JLabel("Data");
-		lblData.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblData.setBounds(477, 112, 31, 14);
-		panel_pagamentos.add(lblData);
-
 		JLabel lblHoraEntrada = new JLabel("Hora Entrada");
 		lblHoraEntrada.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lblHoraEntrada.setBounds(142, 153, 86, 14);
@@ -147,11 +145,6 @@ public class TelaPrincipal extends JFrame {
 		lblHoraSada.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lblHoraSada.setBounds(437, 153, 74, 14);
 		panel_pagamentos.add(lblHoraSada);
-
-		JLabel lblValorHora = new JLabel("Valor / Hora");
-		lblValorHora.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblValorHora.setBounds(142, 199, 86, 14);
-		panel_pagamentos.add(lblValorHora);
 
 		JLabel lblPermanencia = new JLabel("Permanencia");
 		lblPermanencia.setFont(new Font("Tahoma", Font.BOLD, 13));
@@ -190,59 +183,75 @@ public class TelaPrincipal extends JFrame {
 		lblPendente.setBounds(493, 396, 109, 38);
 		panel_pagamentos.add(lblPendente);
 
-		JTextPane textP_ticket = new JTextPane();
+		JTextField textP_ticket = new JTextField();
 		textP_ticket.setBorder(new SoftBevelBorder(BevelBorder.LOWERED,
 				Color.LIGHT_GRAY, null, null, null));
 		textP_ticket.setBounds(254, 106, 82, 20);
 		panel_pagamentos.add(textP_ticket);
 
-		JTextPane textP_horaEntrada = new JTextPane();
+		JTextField textP_horaEntrada = new JTextField();
 		textP_horaEntrada.setBorder(new SoftBevelBorder(BevelBorder.LOWERED,
 				Color.LIGHT_GRAY, null, null, null));
 		textP_horaEntrada.setBounds(254, 147, 82, 20);
 		panel_pagamentos.add(textP_horaEntrada);
 
-		JTextPane textP_valorHora = new JTextPane();
-		textP_valorHora.setBorder(new SoftBevelBorder(BevelBorder.LOWERED,
-				Color.LIGHT_GRAY, null, null, null));
-		textP_valorHora.setBounds(254, 193, 82, 20);
-		panel_pagamentos.add(textP_valorHora);
-
-		JTextPane textP_data = new JTextPane();
-		textP_data.setBorder(new SoftBevelBorder(BevelBorder.LOWERED,
-				Color.LIGHT_GRAY, null, null, null));
-		textP_data.setBounds(539, 106, 74, 20);
-		panel_pagamentos.add(textP_data);
-
-		JTextPane textP_horaSaida = new JTextPane();
+		JTextField textP_horaSaida = new JTextField();
 		textP_horaSaida.setBorder(new SoftBevelBorder(BevelBorder.LOWERED,
 				Color.LIGHT_GRAY, null, null, null));
 		textP_horaSaida.setBounds(539, 147, 74, 20);
 		panel_pagamentos.add(textP_horaSaida);
 
-		JTextPane textP_permanencia = new JTextPane();
+		JTextField textP_permanencia = new JTextField();
 		textP_permanencia.setBorder(new SoftBevelBorder(BevelBorder.LOWERED,
 				Color.LIGHT_GRAY, null, null, null));
 		textP_permanencia.setBounds(539, 193, 74, 20);
 		panel_pagamentos.add(textP_permanencia);
 
-		JTextPane textP_valorTotal = new JTextPane();
+		final JTextField textP_valorTotal = new JTextField();
 		textP_valorTotal.setBorder(new SoftBevelBorder(BevelBorder.LOWERED,
 				Color.LIGHT_GRAY, null, null, null));
 		textP_valorTotal.setBackground(Color.WHITE);
 		textP_valorTotal.setBounds(397, 252, 145, 38);
 		panel_pagamentos.add(textP_valorTotal);
 
-		JTextPane textP_valorRecebido = new JTextPane();
+		final JTextField textP_valorRecebido = new JTextField();
 		textP_valorRecebido.setBorder(new SoftBevelBorder(BevelBorder.LOWERED,
 				Color.LIGHT_GRAY, null, null, null));
 		textP_valorRecebido.setBounds(254, 313, 86, 20);
 		panel_pagamentos.add(textP_valorRecebido);
 
-		JTextPane textP_troco = new JTextPane();
+		final JTextField textP_troco = new JTextField();
+		textP_troco.setEditable(false);
 		textP_troco.setBorder(new SoftBevelBorder(BevelBorder.LOWERED,
 				Color.LIGHT_GRAY, null, null, null));
 		textP_troco.setBounds(539, 313, 74, 20);
 		panel_pagamentos.add(textP_troco);
+		
+		/*
+		 * Eventos
+		 */
+		textP_valorTotal.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent arg0) {
+				textP_troco.setText( Float.toString(calcularTroco(textP_valorTotal, textP_valorRecebido)) );
+			}
+		});
+		
+		textP_valorRecebido.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent arg0) {
+				textP_troco.setText( Float.toString(calcularTroco(textP_valorTotal, textP_valorRecebido)) );
+			}
+		});
+	}
+	
+	private float calcularTroco(JTextField editValorTotal, JTextField editValorRecebido) {
+		String valorRecebido = editValorRecebido.getText();
+		String valorTotal = editValorTotal.getText();
+
+		if( valorRecebido.equals("") || valorTotal.equals("")) {
+			return 0;
+		}
+		return Float.parseFloat(valorRecebido) - Float.parseFloat(valorTotal);
 	}
 }
